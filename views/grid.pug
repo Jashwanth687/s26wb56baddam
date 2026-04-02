@@ -2,3 +2,21 @@ extends layout
 
 block content
   h1= title
+  p rows=#{query.rows} cols=#{query.cols}
+  - let rows = Number(query.rows)
+  - let cols = Number(query.cols)
+  - let cellValue = (row, col) => (2 * row) - col
+  if !Number.isInteger(rows) || !Number.isInteger(cols)
+    p rows and cols must both be integers.
+  else if rows < 2 || rows > 12
+    p rows must be in the range 2 to 12.
+  else if cols < 2 || cols > 12
+    p cols must be in the range 2 to 12.
+  else
+    table#outer.table.table-bordered
+      - for (let i = 0; i < rows; i++) {
+        tr#middle
+          - for (let j = 0; j < cols; j++) {
+            td= cellValue(i, j)
+          - }
+      - }
