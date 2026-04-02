@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  - let image_names = ['Park 1.webp', 'Park 2.webp', 'Park 3.jpg', 'Park 4.jpg', 'Park 5.jpg']
+  div(class="container-fluid")
+    div(class="row")
+      - for (let i = 0; i < 3; i++) {
+        - let randomIndex = Math.floor(Math.random() * 5)
+        - let imageName = image_names[randomIndex]
+        div(class="col-sm-4")
+          img(src=`/images/${imageName}`, alt=`Image of ${imageName}`, height="300", width="300")
+      - }
