@@ -5,8 +5,12 @@ block content
   - let results = [{ park_name: 'Badlands National Park', region: 'South Dakota', acreage: 244000 }, { park_name: 'Hot Springs National Park', region: 'Arkansas', acreage: 5550 }, { park_name: 'Indiana Dunes National Park', region: 'Indiana', acreage: 15349 }]
   div(class="container-fluid")
     div(class="row")
-      each item in results
-        div(class="col-sm-2")
+      each item, index in results
+        div(class="col-sm-2", onclick=`buy(${index})`)
           p Park: #{item.park_name}
           p Region: #{item.region}
           p Acreage: #{item.acreage}
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}.`);
+    }
